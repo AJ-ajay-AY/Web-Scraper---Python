@@ -46,7 +46,8 @@ def js_file():
 
 def html_elements():
     """
-    Function to get a number of HTML elements
+    Function to get a number of HTML elements . Need to make some edits on this function
+    need to add element counts for all indivijual html elemnts
     """
     tag_open = soup.find_all('html')
     print("number of Html elements %d" % len(tag_open))
