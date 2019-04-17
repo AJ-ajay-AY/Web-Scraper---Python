@@ -17,7 +17,7 @@ def links():
     """
     Function to get list of links and print number of links
     """
-    link_list= [link.get("href") for link in soup.find_all('a') if link.get("href")]
+    link_list = [link.get("href") for link in soup.find_all('a') if link.get("href")]
     print("Number of links are ", len(link_list))
     return link_list
 
@@ -46,11 +46,20 @@ def js_file():
 
 def html_elements():
     """
-    Function to get a number of HTML elements . Need to make some edits on this function
-    need to add element counts for all indivijual html elemnts
+    Function to get a number of HTML elements
     """
-    tag_open = soup.find_all('html')
-    print("number of Html elements %d" % len(tag_open))
+    listele =['html','div','p','span','script','h1','h2','h3','h4','h5','h6','img','hr','a','ul','ol','li','label']
+    return listele
+
+def Countreturn(*args):
+    """
+    used to pick list returned from html_elements function and count total html elements for all strings
+    """
+    elements=0
+    for i in range(0,len(args)):
+        elements += len(soup.find_all(args[i]))
+    print("Number of Html elements are", elements)
+
 
 def file_writer(list1,listdes):
 
@@ -69,11 +78,12 @@ if __name__ == '__main__':
     imglist = images()
     cslist = css_elements()
     js_file()
+    Countreturn(html_elements())
     html_elements()
     print("time taken to Parse ", end - start)
 
-    #Creating custom file name to prevent overwrite
-    filename = strurl[12:30]+'.txt'
+    #Creating custom file name to prevent overwrite by picking 12th to 18 character so as to exclude www....
+    filename = strurl[12:18]+'.txt'
     print('\n **** Please check ' + filename + ' for list of links,images and CSS elements ****')
 
     """
